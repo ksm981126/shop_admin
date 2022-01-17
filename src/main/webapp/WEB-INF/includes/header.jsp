@@ -34,5 +34,6 @@
             </a>
         </nav>
     </header>
+    <%@include file="/WEB-INF/includes/left_menu.jsp"%>
 </body>
 </html>

@@ -1,0 +1,24 @@
+@import url(https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+#left_nav { 
+    width: 200px; padding-top: 25px;
+    position: fixed; top: 71px; left: 0;
+    background-color: #fff;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.03);
+    height: calc(100vh - 95px);
+}
+#left_menu a {display: block; text-decoration: none;
+color: #939499; font-family: 'Josefin Sans', sans-serif;
+padding-left: 30px; padding-top: 15px; padding-bottom: 15px;
+}
+#left_menu a * {display: inline-block; vertical-align: middle;}
+#left_menu span {font-family: 'Josefin Sans', sans-serif; margin-left: 15px;}
+#left_menu .current a {color: #fe634b;}
+#left_menu .sub a {margin-left: 45px; font-size: 14px; padding-top: 5px; padding-bottom: 5px;}
+
+#left_menu > li {position: relative;}
+#left_menu > li::before{
+    display: inline-block; width: 16px; height: 80%; background-color: #fe634d;
+    position: absolute; left: 0;top: 10%; border-radius: 10px; margin-left: -10px;
+    display: none;
+}
+#left_menu > li.current::before{display: inline-block;}
