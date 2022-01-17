@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twogenesis.shoppingmall_admin.mapper.CategoryMapper">
+    <select id="selectCategories" resultType="com.twogenesis.shoppingmall_admin.data.CategoryVO">
+        select cate_seq, cate_name, count, parent_name from
+        (
+            (
+                select * from category_info order by cate_seq desc limit 12 offset #{offset}
+            ) a
+            left outer join
+            (
+                select pi_cate_seq, count(*) from product_info group by pi_cate_seq
+            ) b on a.cate_seq = b.pi_cate_seq
+        ) 
+        c left outer join (
+            select cate_seq as parent_seq, cate_name as parent_name from category_info
+        ) 
+        d 
+        on c.cate_parent = d.parent_seq
+    </select>
+    <select id="selectCategoryCnt" resultType="java.lang.Integer">
+        select count(*) from category_info
+    </select>
+    <select id="selectRootCategories" resultType="com.twogenesis.shoppingmall_admin.data.CategoryVO">
+        select * from category_info where cate_parent is null
+    </select>
+    <select id="selectChildCategories" resultType="com.twogenesis.shoppingmall_admin.data.CategoryVO">
+        select * from category_info where cate_parent = #{parent_seq}
+    </select>
+    <insert id="insertCategory">
+        insert into category_info(cate_name, cate_parent) values(#{cate_name}, #{cate_parent})
+    </insert>
+    <delete id="deleteCategory">
+        delete from category_info where cate_seq = #{seq}
+    </delete>
+    <update id="updateCategory">
+        update category_info set cate_name = #{cate_name}, cate_parent = #{cate_parent}
+        where cate_seq = #{cate_seq}
+    </update>
+    <select id="selectCategoryBySeq" resultType="com.twogenesis.shoppingmall_admin.data.CategoryVO">
+        select * from category_info where cate_seq =#{seq}
+    </select>
+</mapper>
