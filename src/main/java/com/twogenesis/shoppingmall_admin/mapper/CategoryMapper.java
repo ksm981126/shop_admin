@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface CategoryMapper {
-    List<CategoryVO> selectCategories(Integer offset);
-    Integer selectCategoryCnt();
+    List<CategoryVO> selectCategories(Integer offset ,String keyword, String type);
+    Integer selectCategoryCnt(String keyword, String type);
     List<CategoryVO> selectRootCategories();
     List<CategoryVO> selectChildCategories(Integer parent_seq);
     void insertCategory(CategoryVO data);

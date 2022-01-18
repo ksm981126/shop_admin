@@ -6,7 +6,7 @@
         select cate_seq, cate_name, count, parent_name from
         (
             (
-                select * from category_info order by cate_seq desc limit 12 offset #{offset}
+                select * from category_info order by cate_seq desc 
             ) a
             left outer join
             (
@@ -18,9 +18,27 @@
         ) 
         d 
         on c.cate_parent = d.parent_seq
+        where
+            cate_name like #{keyword}
+            <if test="type == 'child'">
+                and parent_name is not null
+            </if>
+            <if test="type == 'root'">
+                and parent_name is null
+            </if>
+        order by cate_seq desc
+        limit 12 offset #{offset}
     </select>
     <select id="selectCategoryCnt" resultType="java.lang.Integer">
-        select count(*) from category_info
+        select count(*) from category_info 
+        where 
+        cate_name like #{keyword}
+        <if test="type == 'child'">
+                and cate_parent is not null
+            </if>
+            <if test="type == 'root'">
+                and cate_parent is null
+            </if>
     </select>
     <select id="selectRootCategories" resultType="com.twogenesis.shoppingmall_admin.data.CategoryVO">
         select * from category_info where cate_parent is null

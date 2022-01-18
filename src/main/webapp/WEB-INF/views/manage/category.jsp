@@ -8,16 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="/assets/js/category.js"></script>
     <link rel="stylesheet" href="/assets/css/category.css">
-    <style>
-        .category_item{border: 1px solid #000; margin: 10px;}
-        .category_item h2 {font-size: 12px; font-weight: 100;}
-    </style>
+    <script>
+        let type = '${type}';
+        let keyword = '${keyword}';
+        let offset ='${offset}';
+        </script>
+        <script src="/assets/js/category.js"></script>
 </head>
 <body>
     <main>
-        ${page}
         <h1>
             <a href="/manage">관리</a>
             <span>&gt;</span>
@@ -31,9 +31,9 @@
                 </div>
             </div>
             <div class="category_types">
-                <a href="#" class="current">전체</a>
-                <a href="#">최상위분류</a>
-                <a href="#">하위분류</a>
+                <a href="#" data-type="all">전체</a>
+                <a href="#" data-type="root">최상위분류</a>
+                <a href="#" data-type="child">하위분류</a>
             </div>
             <div class="search_area">
                 <div class="search_box">
