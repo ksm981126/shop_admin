@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twogenesis.shoppingmall_admin.mapper.DeliveryMapper">
+    <select id="selectDeliveries" resultType="com.twogenesis.shoppingmall_admin.data.DeliveryVO">
+        select * from delivery_info where di_name like #{keyword}
+    </select>
+    <select id="selectDeliveryCnt" resultType="java.lang.Integer">
+        select count(*) from delivery_info where di_name like #{keyword}
+    </select>
+    <select id="selectDeliveryBySeq" resultType="com.twogenesis.shoppingmall_admin.data.DeliveryVO">
+        select * from delivery_info where di_seq = #{seq}
+    </select>
+    <insert id="insertDelivery">
+        insert into delivery_info(di_name,di_price) values (#{di_name},#{di_price})
+    </insert>
+    <update id="updateDelivery">
+        update  delivery_info set di_name =#{di_name}, di_price=#{di_price} where di_seq = #{di_seq}
+    </update>
+    <delete id="deleteDelivery">
+        delete from delivery_info where di_seq = #{seq}
+    </delete>
+</mapper>
