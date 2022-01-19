@@ -29,6 +29,12 @@
                 <li>
                     <a href="/manage/category">Category</a>
                 </li>
+                <li>
+                    <a href="/manage/delivery">Delivery</a>
+                </li>
+                <li>
+                    <a href="/manage/manufacturer">Manufacturer</a>
+                </li>
             </ul>
         </ul>
     </nav>

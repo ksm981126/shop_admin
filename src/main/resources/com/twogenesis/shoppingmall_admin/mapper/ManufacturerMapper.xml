@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twogenesis.shoppingmall_admin.mapper.ManufacturerMapper">
+    <select id="selectManufacturerList" resultType="com.twogenesis.shoppingmall_admin.data.ManufacturerVO">
+        select * from manufacturer_info where mfi_name like #{keyword} order by mfi_seq desc limit 24 offset #{offset} 
+    </select>
+    <select id="selectManufacturerCnt" resultType="java.lang.Integer">
+        select count(*) from manufacturer_info where mfi_name like #{keyword}
+    </select>
+    <select id="selectManufacturerBySeq" resultType="com.twogenesis.shoppingmall_admin.data.ManufacturerVO">
+        select * from manufacturer_info where mfi_seq =#{seq}
+    </select>
+    <insert id="insertManufacturer">
+        insert into manufacturer_info(mfi_name,mfi_phone,mfi_email) values (#{mfi_name},#{mfi_phone},#{mfi_email})
+    </insert>
+    <update id="updateManufacturer">
+        update manufacturer_info set mfi_name =#{mfi_name},mfi_phone =#{mfi_phone},mfi_email =#{mfi_email}
+        where mfi_seq =#{mfi_seq}
+    </update>
+    <delete id="deleteManufacturer">
+        delete from manufacturer_info where mfi_seq =#{mfi_seq}
+    </delete>
+</mapper>
