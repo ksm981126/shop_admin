@@ -90,11 +90,10 @@ $(function(){
             type:"get",
             success:function(data){
                 console.log(data);
-                $("#si_id").val(data.si_id).prop("disabld", true);
+                $("#si_id").val(data.si_id).prop("disabled", true);
                 $("#si_pwd").val("*************").prop("disabled",true);
                 $("#si_pwd_confirm").val("*************").prop("disabled",true);
 
-                
                 $("#si_name").val(data.si_name);
                 $("#si_email").val(data.si_email);
                 $("#si_phone").val(data.si_phone);

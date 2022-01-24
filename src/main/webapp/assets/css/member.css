@@ -1,0 +1,79 @@
+main > h1 {font-size: 24px; margin-bottom: 30px;}
+.summary_area {padding: 10px 0; overflow: hidden;}
+.summary_area > p {float: left;}
+.summary_area > .search_area {float: right;}
+.search_area > * {display: inline-block; vertical-align: middle;}
+.search_box {background-color: #fff; padding: 10px 15px;
+border-radius: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.07);}
+.search_box select {
+    border: 0; outline: none;
+}
+#keyword{
+    border: 0; padding: 0; outline: none;
+}
+#search_btn {
+    text-decoration: none; color: #333;
+}
+#add_member {margin-left: 10px; border: 0; padding: 10px 0; width: 120px;
+    background-color: #fe634d; color: #fff; border-radius: 10px; cursor: pointer;
+}
+#add_member i{margin-right: 10px;}
+.member_list {margin-top: 30px;}
+.member_list table {width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.07); overflow: hidden;}
+.member_list table th, .member_list table td {padding: 20px;}
+.member_list table th {text-align: left;}
+.member_list table thead {background-color: #fafafa;}
+.member_list tbody td:first-child {border-radius:  10px 0 0 10px;}
+.member_list tbody td:last-child {border-radius:  0 10px 10px 0;}
+.member_list tbody tr{transition: box-shadow 0.3;}
+.member_list tbody tr:hover {z-index: 9; box-shadow: 0 0 20px #fa5e4933;}
+.member_list td button {
+    border: 1px solid #000; background-color: transparent; border-radius: 3px; padding: 0;
+    margin: 5px; cursor: pointer; font-size: 12px; width: 25px; height: 25px;
+}
+.member_list td .modify {color: #555; border-color: #555;}
+.member_list td .delete {color:  #fa5e49; border-color: #fa5e49;}
+.member_list td span {display: inline-block; vertical-align: middle;}
+.member_list td .profile_img {width: 35px; height: 35px; background-size: 100%; background-position: center;
+    margin-right: 5px; border-radius: 50%; border: 1px solid #ccc;   
+}
+.popup_wrap {position: fixed; left: 0; top: 0;background-color: rgba(0,0,0,0.5);
+    z-index: 99999999; width: 100vw; height: 100vh; display: none;}
+.popup{
+    background-color: #fff; position: absolute; padding: 30px; left: 50%;margin-left: -301px; top: 10%;
+}
+.popup >h2 {font-size: 24px; text-align: center; margin-bottom: 30px;}
+.member_info >div {display: inline-block; vertical-align: top; width: 250px; margin: 0 10px;}
+.member_info input, .member_info textarea, .member_info select {
+    width: 100%; font-size: 14px; margin-bottom: 10px; border: 0;
+    box-sizing: border-box; padding: 10px 20px; border: 1px solid #ccc;
+}
+.member_info textarea {height: 126px; resize: none;}
+
+.member_additional_info btns{margin-top: 30px;}
+.member_additional_info button{
+    width: 100%; margin-bottom: 10px; background-color: transparent; color: #555;
+    border: 1px solid #555; border-radius: 3px; height: 35px; cursor: pointer;
+}
+.member_additional_info #save:hover{color: #fff; background-color: #555;}
+.member_additional_info #update{ color: rgb(21, 150, 255); border-color: rgb(21, 150, 255);}
+.member_additional_info #update:hover{ color: #fff; border-color: rgb(21, 150, 255);}
+.member_additional_info #cancel {color: rgb(228, 47, 47); border-color: rgb(228, 47, 47);}
+.member_additional_info #cancel:hover {color: #fff; border-color: rgb(228, 47, 47);}
+
+.pager_area {padding: 30px 0; text-align: center;}
+.pager_area a {color: #333; text-decoration: none; margin: 5px;}
+.pager_area a.current{font-weight: 700; color: #000;}
+
+.status, .grade {font-size: 12px; display: inline-block; padding: 5px; border-radius: 5px; border: 1px solid #000;}
+.st1 {color: rgb(13, 211, 13); border-color: rgb(13, 211, 13);}
+.st2 {color:#999; border-color: #999;}
+.st3 {color: rgb(255, 206, 45); border-color: rgb(255, 206, 45);}
+.st4 {color: rgb(255, 116, 116); border-color: rgb(255, 116, 116);}
+.st5 {color: red; border-color: red;}
+
+.gd1 {color: gray ; border-color: gray;}
+.gd2 {color: #333; border-color: #333;}
+.gd3 {color: rgb(111,185,255); border-color:rgb(111,185,255) ;}
+.gd4 {color: rgb(255, 116, 116); border-color:rgb(255, 116, 116) ;}
+.gd5 {color: rgb(228, 47, 47); border-color:rgb(228, 47, 47) ;}

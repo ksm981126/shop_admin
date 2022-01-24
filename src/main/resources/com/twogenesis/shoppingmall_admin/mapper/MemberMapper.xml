@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twogenesis.shoppingmall_admin.mapper.MemberMapper">
+    <select id="getMemberList" resultType="com.twogenesis.shoppingmall_admin.data.MemberVO">
+        select mi_seq,mi_email,mi_name,mi_birth,mi_gen,mi_address,mi_phone,mi_grade,mi_status,mi_reg_dt,mi_leave_dt
+        from member_info
+        <if test="type=='email'">
+            where mi_email like #{keyword}
+        </if>
+        <if test="type=='name'">
+            where mi_name like #{keyword}
+        </if>
+        <if test="type=='birth'">
+            where mi_birth like #{keyword}
+        </if>
+        <if test="type=='address'">
+            where mi_address like #{keyword}
+        </if>
+        <if test="type=='phone'">
+            where mi_phone like #{keyword}
+        </if>
+        order by mi_seq desc
+        limit 10 offset #{offset}
+    </select>
+    <select id="getMemberCnt" resultType="java.lang.Integer">
+        select count(*) from member_info
+        <if test="type=='email'">
+            where mi_email like #{keyword}
+        </if>
+        <if test="type=='name'">
+            where mi_name like #{keyword}
+        </if>
+        <if test="type=='birth'">
+            where mi_birth like #{keyword}
+        </if>
+        <if test="type=='address'">
+            where mi_address like #{keyword}
+        </if>
+        <if test="type=='phone'">
+            where mi_phone like #{keyword}
+        </if>
+    </select>
+    <select id="getMemberBySeq" resultType="com.twogenesis.shoppingmall_admin.data.MemberVO">
+        select mi_seq,mi_email,mi_name,mi_birth,mi_gen,mi_address,mi_phone,mi_grade,mi_status,mi_reg_dt,mi_leave_dt
+        from member_info where mi_seq=#{mi_seq}
+    </select>
+
+    <insert id="insertMember">
+        insert into member_info(mi_pwd,mi_email,mi_name,mi_birth,mi_gen,mi_address,mi_phone,mi_grade,mi_status)
+        values(#{mi_pwd},#{mi_email},#{mi_name},#{mi_birth},#{mi_gen},#{mi_address},#{mi_phone},#{mi_grade},#{mi_status})
+    </insert>
+    <update id="updateMember">
+        update member_info
+        set mi_email=#{mi_email},mi_name=#{mi_name},mi_birth=#{mi_birth},mi_gen=#{mi_gen},mi_address=#{mi_address},mi_phone=#{mi_phone},mi_grade=#{mi_grade},mi_status=#{mi_status}
+        where mi_seq=#{mi_seq}
+    </update>
+    <delete id="deleteMember">
+        delete from member_info where mi_seq =#{seq}
+    </delete>
+    <select id="isExistEmail" resultType="java.lang.Integer">
+        select count(*) from member_info where mi_email = #{email}
+    </select>
+</mapper>
