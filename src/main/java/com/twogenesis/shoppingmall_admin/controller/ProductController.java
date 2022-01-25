@@ -1,5 +1,6 @@
 package com.twogenesis.shoppingmall_admin.controller;
 
+import com.twogenesis.shoppingmall_admin.mapper.CategoryMapper;
 import com.twogenesis.shoppingmall_admin.mapper.ProductMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProductController {
+    @Autowired CategoryMapper cate_mapper;
     @Autowired ProductMapper mapper;
     @GetMapping("/product/list")
     public String getProductList(@RequestParam@Nullable String keyword,@RequestParam@Nullable Integer offset, Model model){
@@ -21,6 +23,7 @@ public class ProductController {
         if(offset==null) offset = null;
 
         model.addAttribute("list", mapper.selectProductList(keyword, offset));
+        model.addAttribute("root_cate", cate_mapper.selectRootCategories());
         return "/product/list";
     }
 }

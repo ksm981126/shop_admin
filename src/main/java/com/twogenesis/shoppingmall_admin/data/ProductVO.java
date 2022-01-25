@@ -23,10 +23,11 @@ public class ProductVO {
     private String si_phone;
     private Integer si_seq;
 	private String si_address;
-    private Integer si_img_url;
+    private String si_img_url;
     private String mfi_name;
     private String mfi_email;
     private String mfi_phone;
     private Double discounted_price;
     private Double saving_point;
+    private String thumbnail;
 }
