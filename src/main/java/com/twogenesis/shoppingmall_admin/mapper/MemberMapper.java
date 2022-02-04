@@ -2,6 +2,7 @@ package com.twogenesis.shoppingmall_admin.mapper;
 
 import java.util.List;
 
+import com.twogenesis.shoppingmall_admin.data.LoginVO;
 import com.twogenesis.shoppingmall_admin.data.MemberVO;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -17,4 +18,5 @@ public interface MemberMapper {
     void deleteMember(Integer seq);
 
     Integer isExistEmail(String email);
+    MemberVO memberLogin(LoginVO login);
 }

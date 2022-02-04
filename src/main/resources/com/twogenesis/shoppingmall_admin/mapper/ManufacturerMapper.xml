@@ -3,7 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.twogenesis.shoppingmall_admin.mapper.ManufacturerMapper">
     <select id="selectManufacturerList" resultType="com.twogenesis.shoppingmall_admin.data.ManufacturerVO">
-        select * from manufacturer_info where mfi_name like #{keyword} order by mfi_seq desc limit 24 offset #{offset} 
+        select * from manufacturer_info where mfi_name like #{keyword} order by mfi_seq desc limit #{limit} offset #{offset} 
     </select>
     <select id="selectManufacturerCnt" resultType="java.lang.Integer">
         select count(*) from manufacturer_info where mfi_name like #{keyword}

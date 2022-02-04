@@ -32,5 +32,9 @@
     <select id="isExistSellerId" resultType="java.lang.Integer">
         select count(*) from seller_info where si_id = #{id}
     </select>
+    <select id="loginSeller" resultType="com.twogenesis.shoppingmall_admin.data.SellerVO">
+        select si_seq,si_id,si_name,si_email,si_phone,si_address,si_reg_dt,si_img_url,si_status
+        from seller_info where si_id = #{user_id} and si_pwd =#{user_pwd}
+    </select>
 </mapper>
     

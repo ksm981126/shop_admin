@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -101,5 +103,18 @@ public class FileAPIController {
             return "파일이 존재하지 않습니다.";
         }
         return "이미지가 삭제되었습니다.";
+    }
+    @DeleteMapping("/images/{type}")
+    public String deleteImages(@PathVariable String type, @RequestBody List<String> uri_list){
+        for(String uri : uri_list){
+            if(!uri.equals("default.jpg")){
+                String filePath = path+"/"+type+"/"+uri;
+                File deleteFile = new File(filePath);
+                if(deleteFile.exists()){
+                    deleteFile.delete();
+                }
+            }
+        }
+        return uri_list.size()+"개의 이미지가 삭제되었습니다.";
     }
 }

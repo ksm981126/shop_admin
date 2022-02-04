@@ -59,6 +59,7 @@ $(function(){
                 $("#mi_gen").val(data.mi_gen).prop("selected",true);
                 $("#mi_grade").val(data.mi_grade).prop("selected",true);
                 $("#mi_status").val(data.mi_status).prop("selected",true);
+                $("#mi_role").val(data.mi_role).prop("selected",true);
                 }
             })
         })
@@ -86,7 +87,8 @@ $(function(){
                 mi_gen : $("#mi_gen option:selected").val(),
                 mi_address : $("#mi_address").val(),
                 mi_grade : $("#mi_grade option:selected").val(),
-                mi_status : $("#mi_status option:selected").val()
+                mi_status : $("#mi_status option:selected").val(),
+                mi_role : $("#mi_role option:selected").val()
         }
         $.ajax({
             url:"/member/add",
@@ -112,7 +114,8 @@ $(function(){
                 mi_gen : $("#mi_gen option:selected").val(),
                 mi_address : $("#mi_address").val(),
                 mi_grade : $("#mi_grade option:selected").val(),
-                mi_status : $("#mi_status option:selected").val()
+                mi_status : $("#mi_status option:selected").val(),
+                mi_role : $("#mi_role option:selected").val()
             }
             $.ajax({
                 url:"/member/update",

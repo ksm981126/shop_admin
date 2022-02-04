@@ -29,7 +29,7 @@ main > h1 {margin-bottom: 50px;}
 }
 
 #add_category {padding: 0; border: 0; margin-left: 10px; background-color: #fe634d;
-color: #fff; padding: 10px 20px; border-radius: 10px;
+color: #fff; padding: 10px 20px; border-radius: 10px; cursor: pointer;
 }
 #add_category > * {display: inline-block; vertical-align: middle;}
 #add_category > span {margin-left: 5px;}

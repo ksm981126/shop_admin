@@ -5,8 +5,77 @@
     <select id="selectProductList" resultType="com.twogenesis.shoppingmall_admin.data.ProductVO">
         select * from product_detail_info
         where pi_name like #{keyword}
+        <if test="seller_seq !=0">
+            and si_seq =#{seller_seq}
+        </if>
         order by pi_seq desc
         limit 10 offset #{offset}
-
     </select>
+    <insert id="insertProductInfo" parameterType="com.twogenesis.shoppingmall_admin.data.ProductDataVO">
+        <selectKey keyProperty="pi_seq" resultType="int" order="AFTER">
+            select pi_seq from product_info 
+            where pi_name =#{pi_name} and pi_seller_seq = #{pi_seller_seq}
+            order by pi_seq desc limit 1
+        </selectKey>
+        INSERT INTO product_info
+        (pi_name, pi_price, pi_sub_title, pi_discount_rate, pi_point_rate, pi_stock, pi_cate_seq, pi_seller_seq, pi_delivery_seq, pi_status, pi_mfi_seq)
+        VALUES
+        (#{pi_name}, #{pi_price}, #{pi_sub_title}, #{pi_discount_rate}, #{pi_point_rate}, #{pi_stock}, #{pi_cate_seq}, #{pi_seller_seq}, #{pi_delivery_seq}, #{pi_status}, #{pi_mfi_seq});
+    </insert>
+    <insert id="insertProductImage">
+        insert into product_image_info(pii_img_url,pii_pi_seq,pii_thumb)
+        values (#{pii_img_url},#{pii_pi_seq},#{pii_thumb})
+    </insert>
+    <insert id="insertProductDescription">
+        insert into prod_detail_desc(pdd_content,pdd_pi_seq)
+        values (#{pdd_content},#{pdd_pi_seq})
+    </insert>
+    <insert id="insertProductDescImage">
+        insert into prod_detail_desc_img (pddi_img_url,pddi_index,pddi_pi_seq)
+        values (#{pddi_img_url},#{pddi_index},#{pddi_pi_seq})
+    </insert>
+    <select id="selectProductCnt" resultType="java.lang.Integer">
+        select count(*) from product_detail_info
+        where pi_name like #{keyword}
+        <if test="seller_seq !=0">
+            and si_seq =#{seller_seq}
+        </if>
+    </select>
+    <select id="selectProductImgNames" resultType="java.lang.String">
+        select pii_img_url from product_image_info where pii_pi_seq =#{seq}
+    </select>
+    <select id="selectProductDescImgNames" resultType="java.lang.String">
+        select pddi_img_url from prod_detail_desc_img where pddi_pi_seq =#{seq}
+    </select>
+    <delete id="deleteProduct">
+        delete from product_info where pi_seq = #{seq}
+    </delete>
+    <select id="selectProductByseq" resultType="com.twogenesis.shoppingmall_admin.data.ProductVO">
+        select * from product_detail_info where pi_seq =#{seq}
+    </select>
+    <select id="selectProductDescription" resultType="java.lang.String">
+        select pdd_content from prod_detail_desc where pdd_pi_seq =#{seq}
+    </select>
+    <delete id="deleteProductImage">
+        delete from product_image_info where pii_img_url = #{filename}
+    </delete>
+    <delete id="deleteDetailProductImage">
+        delete from prod_detail_desc_img where pddi_img_url = #{filename}
+    </delete>
+    <update id="updateProductInfo">
+        update product_info
+        set
+            pi_name =#{pi_name}, pi_price =#{pi_price}, pi_sub_title =#{pi_sub_title},pi_discount_rate =#{pi_discount_rate}, pi_point_rate =#{pi_point_rate},pi_stock =#{pi_stock}, pi_cate_seq =#{pi_cate_seq}, pi_seller_seq =#{pi_seller_seq},pi_delivery_seq =#{pi_delivery_seq}, pi_status =#{pi_status}, pi_mfi_seq =#{pi_mfi_seq}
+        where
+            pi_seq =#{pi_seq}
+    </update>
+    <delete id="deleteProductImageBySeq">
+        delete from product_image_info where pii_pi_seq =#{seq}
+    </delete>
+    <delete id="deleteProductDetailImageBySeq">
+        delete from prod_detail_desc_img where pddi_pi_seq = #{seq}
+    </delete>
+    <update id="updateProdDetailDesc">
+        update prod_detail_desc set pdd_content =#{desc} where pdd_pi_seq = #{seq}
+    </update>
 </mapper>

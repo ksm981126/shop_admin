@@ -57,7 +57,7 @@
     </div>
     <div class="pager_area">
         <c:forEach begin="1" end="${page}" var="i">
-            <a href="/manage/manufacturer?offset=${(i-1)*24}&keyword =${keyword}">${i}</a>
+            <a href="/manage/manufacturer?offset=${(i-1)*20}&keyword =${keyword}">${i}</a>
         </c:forEach>
     </div>
     </main>

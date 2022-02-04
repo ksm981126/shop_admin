@@ -22,8 +22,8 @@
                     <a href="#" id="search_btn">검색</a>
                 </div>
                 <button id="add_delivery" class="add_btn">배송사 추가</button>
+                </div>
             </div>
-        </div>
         <div class="delivery_list item_list">
             <c:forEach items="${list}" var ="item">
             <div class="delivery_item list_item">

@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="/assets/css/header.css">
     <script src="/assets/plugins/jquery-3.4.1.min.js"></script>
+    <script>
+        if('${adminuser}' == '' && '${login_seller}' == ''){
+            alert("로그인 후 사용하실 수 있습니다.");
+            location.href ="/";
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -28,11 +34,20 @@
                 <img src="http://placehold.it/35x35">
                 <span class="new_badge"></span>
             </a>
-
-            <a href="#">
-                <img src="http://placehold.it/35x35">
-                <span>사용자(user01)</span>
-            </a>
+            <c:if test="${login_seller !=null}">
+                <div class="user_profile_img"
+                    style="display: inline-block; width: 35px; height: 35px; background-image: url(/image/seller/${login_seller.si_img_url}); border: 1px solid #ccc; border-radius: 50%; background-size: 100%; background-position: center; vertical-align: middle;"></div>
+                <a href="#">
+                    <span>${login_seller.si_name}(${login_seller.si_id})</span>
+                </a>
+                <a href="/logout">로그아웃</a>
+            </c:if>
+            <c:if test="${adminuser != null}">
+                <a href="#">
+                    <span>${adminuser.mi_name}(${adminuser.mi_email})</span>
+                </a>
+                <a href="/admin/logout">로그아웃</a>
+            </c:if>
         </nav>
     </header>
     <%@include file="/WEB-INF/includes/left_menu.jsp"%>

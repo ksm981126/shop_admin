@@ -4,7 +4,7 @@ main > h1{
 }
 .summary_area{overflow: hidden; padding: 5px 0}
 .summary_area > h2 {float: left; padding-top: 10px;}
-.search_area{float: right; ;}
+.search_area{float: right;}
 .search_area > * {display: inline-block; vertical-align: middle;}
 .search_box {background-color: #fff; padding: 10px 15px;
 border-radius: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.07);}
@@ -15,7 +15,7 @@ border-radius: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.07);}
     text-decoration: none; color: #333;
 }
 .add_btn {margin-left: 10px; border: 0; padding: 10px 0; width: 120px;
-    background-color: #fe634d; color: #fff; border-radius: 10px;
+    background-color: #fe634d; color: #fff; border-radius: 10px; cursor: pointer;
 }
 .add_btn i{margin-right: 10px;}
 .list_item {display: inline-block; vertical-align: top;

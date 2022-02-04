@@ -25,10 +25,10 @@ public class ManufacturerController {
 
     Integer cnt =mapper.selectManufacturerCnt(keyword);
 
-    model.addAttribute("list", mapper.selectManufacturerList(keyword, offset));
+    model.addAttribute("list", mapper.selectManufacturerList(keyword, offset,20));
     model.addAttribute("cnt",cnt);
 
-    Integer page = (cnt/24)+ (cnt %24 > 0 ? 1:0);
+    Integer page = (cnt/20)+ (cnt %20 > 0 ? 1:0);
     model.addAttribute("page", page);
 
     return "/manage/manufacturer";

@@ -30,4 +30,8 @@ public class ProductVO {
     private Double discounted_price;
     private Double saving_point;
     private String thumbnail;
+    private Integer di_seq;
+    private Integer mfi_seq;
+    private Integer cate_seq;
+    private String pi_sub_title;
 }
