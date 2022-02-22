@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twogenesis.shoppingmall_admin.mapper.OrderMapper">
+    <select id="selectOrderManageInfo" resultType="com.twogenesis.shoppingmall_admin.data.OrderManageInfoVO">
+        select * from order_manage_list
+        <if test ="seq !=0">
+            where si_seq =#{seq}
+        </if>
+        order by oi_seq desc
+        limit 10 offset #{offset}
+    </select>
+    <select id="selectOrderManageInfoCount" resultType="java.lang.Integer">
+        select count(*) from order_manage_list
+        <if test="seq !=0">
+        where si_seq =#{seq}
+        </if>
+    </select>
+    <update id="updateOrderStatus">
+        update order_info
+        set oi_delivery_number = #{delivery_no}, oi_mod_dt=now(),
+        oi_delivery_status =2
+        where oi_seq =#{seq}
+    </update>
+</mapper>

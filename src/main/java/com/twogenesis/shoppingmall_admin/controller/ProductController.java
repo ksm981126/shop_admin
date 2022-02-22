@@ -15,29 +15,55 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProductController {
-    @Autowired CategoryMapper cate_mapper;
     @Autowired ProductMapper mapper;
+    @Autowired CategoryMapper cate_mapper;
     @GetMapping("/product/list")
-    public String getProductList(@RequestParam@Nullable String keyword,@RequestParam@Nullable Integer offset, Model model, HttpSession session){
+    public String getProductList(
+        @RequestParam @Nullable String keyword, 
+        @RequestParam @Nullable Integer offset, 
+        Model model, HttpSession session
+    ) {
         SellerVO seller = (SellerVO)session.getAttribute("login_seller");
-        Integer seller_seq =0;
+        Integer seller_seq = 0;
         if(seller != null) seller_seq = seller.getSi_seq();
         model.addAttribute("keyword", keyword);
-        
-        if(keyword == null) keyword ="%%";
-        else keyword ="%"+keyword+"%";
-        
-        
-        if(offset==null) offset = null;
+        if(keyword == null) keyword = "%%";
+        else keyword = "%"+keyword+"%";
+        if(offset == null) offset = 0;
         model.addAttribute("offset", offset);
-        
-        model.addAttribute("list", mapper.selectProductList(keyword, offset,seller_seq));
+        model.addAttribute("list", mapper.selectProductList(keyword, offset, seller_seq));
         model.addAttribute("root_cate", cate_mapper.selectRootCategories());
-        
-        Integer cnt =mapper.selectProductCnt(keyword, seller_seq);
-        Integer page = (cnt/10)+(cnt%10>0? 1:0);
+
+        Integer cnt = mapper.selectProductCnt(keyword, seller_seq);
+        Integer page = (cnt/10)+(cnt%10>0 ? 1 : 0);
+
         model.addAttribute("cnt", cnt);
         model.addAttribute("page", page);
+        model.addAttribute("menu1", "product");
+        model.addAttribute("menu2", "list");
         return "/product/list";
+    }
+
+    @GetMapping("/product/recommend")
+    public String getProductRecommend(Model model,
+        @RequestParam @Nullable String keyword, 
+        @RequestParam @Nullable Integer offset
+    ) {
+        model.addAttribute("keyword", keyword);
+        if(keyword == null) keyword = "%%";
+        else keyword = "%"+keyword+"%";
+
+        if(offset == null) offset = 0;
+
+        Integer cnt = mapper.selectProductCnt(keyword, 0);
+        Integer page = (cnt/10)+(cnt%10>0 ? 1 : 0);
+
+        model.addAttribute("cnt", cnt);
+        model.addAttribute("page", page);
+
+        model.addAttribute("list", mapper.selectRecommendProductList(keyword, offset));
+        model.addAttribute("menu1", "product");
+        model.addAttribute("menu2", "recommend");
+        return "/product/recommend";
     }
 }

@@ -34,4 +34,6 @@ public class ProductVO {
     private Integer mfi_seq;
     private Integer cate_seq;
     private String pi_sub_title;
+
+    private Integer recommend;
 }

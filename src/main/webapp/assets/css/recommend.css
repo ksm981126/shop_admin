@@ -1,0 +1,68 @@
+.recommend_btn {
+    width: 35px; height: 35px; padding: 0; font-size: 18px; border: 0;
+    border-radius: 50%; position: absolute; right: 20px; top: 20px;
+    border: 1px solid rgb(255, 127, 47);
+    color: rgb(255, 127, 47);
+    background-color: #fff; cursor:pointer;
+}
+.recommend_btn.active {background-color: rgb(255, 127, 47); color: #fff;}
+.recommend_btn::before {
+    font-family: "Font Awesome 5 Pro";
+    content:"\f00c"
+}
+/* .recommend_btn.active::before {
+    content:"제거"
+} */
+
+.recommend_item {display: inline-block; vertical-align: top; margin: 10px;
+    width: 300px; padding: 20px; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 30px 20px; background-color: #fff; position: relative;
+    text-align: center;
+}
+.recommend_item .thumb {
+    width: 200px; height: 200px; background-size: 90%; background-position: center;
+    background-repeat: no-repeat; display: inline-block;
+    border: 1px solid #ccc; background-color: #fff;
+}
+.prod_seller::before {
+    font-family: "Font Awesome 5 Pro";
+    content:"\f54e";
+    margin-right: 3px;
+}
+.prod_seller {
+    font-size: 14px; margin-top: 10px;
+}
+.prod_name {
+    margin-top: 10px; font-weight: 700;
+    white-space: nowrap; width: 100%; overflow: hidden; text-overflow: ellipsis;
+    margin-bottom: 15px;
+}
+.discount_rate {margin-bottom: 10px;}
+.discount_rate::before {
+    content:"할인율 : "
+}
+.prod_price {margin-bottom: 10px;}
+.prod_price::before {
+    content:"가격 : ";
+}
+.discounted::before {content:"할인가 : "}
+.page_header > h1 {
+    font-size: 28px; margin-bottom: 50px; margin-top: 30px; margin-left: 15px;
+}
+.page_header {position: relative;}
+.type_area {font-size: 0;}
+.type_area button {font-size: 14px; padding: 0; border: 0; width: 80px; height: 42px;
+    cursor:pointer; background-color: #fff; border: 1px solid rgb(255, 127, 47); color: rgb(255, 127, 47);
+    border-right: 0;
+}
+.type_area button.current {background-color: rgb(255, 127, 47); color: #fff;}
+.type_area button:last-child {border-right: 1px solid rgb(255, 127, 47); border-radius: 0 5px 5px 0;}
+.type_area button:first-child {border-radius: 5px 0 0 5px;}
+.type_area {position: absolute; right: 330px; top: 0px;}
+.search_box {padding: 10px; background-color: #fff; position: absolute; right: 20px; top: 0;
+border-radius: 5px;}
+.search_box > * {border: 0; padding: 0; background-color: transparent; display: inline-block; vertical-align: middle;}
+
+.pager_area {padding:30px 0; text-align: center;}
+.pager_area a {color: #666; text-decoration: none; margin: 5px;}
+.pager_area a.current {font-weight: 700; color: #000;}

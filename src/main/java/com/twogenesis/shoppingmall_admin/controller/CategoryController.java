@@ -18,24 +18,26 @@ public class CategoryController {
 
     @GetMapping("/manage/category")
     public String getManageCategory(
-            @RequestParam @Nullable String keyword,
-            @RequestParam @Nullable String type,
-            @RequestParam @Nullable Integer offset, Model model
-        ) {
+        @RequestParam @Nullable String keyword,
+        @RequestParam @Nullable String type,
+        @RequestParam @Nullable Integer offset, Model model
+    ) {
         model.addAttribute("keyword", keyword);
         if(offset == null) offset = 0;
-        if(keyword == null) keyword ="%%";
+        if(keyword == null) keyword = "%%";
         else keyword = "%"+keyword+"%";
-
-        List<CategoryVO> list = mapper.selectCategories(offset,keyword,type);
+        
+        List<CategoryVO> list = mapper.selectCategories(offset, keyword, type);
         model.addAttribute("list", list);
-        model.addAttribute("cnt", mapper.selectCategoryCnt(keyword,type));
+        model.addAttribute("cnt", mapper.selectCategoryCnt(keyword, type));
         model.addAttribute("type", type);
         model.addAttribute("offset", offset);
+        model.addAttribute("menu1", "manage");
+        model.addAttribute("menu2", "category");
+        
+        Integer cnt = mapper.selectCategoryCnt(keyword, type);
 
-        Integer cnt = mapper.selectCategoryCnt(keyword,type);
-
-        Integer page =(cnt/12)+(cnt%12>0?1:0);
+        Integer page = (cnt/12)+(cnt%12>0?1:0);
         model.addAttribute("page", page);
 
         return "/manage/category";

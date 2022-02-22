@@ -535,7 +535,7 @@ $(function(){
             let img_data = {
                 pddi_img_url:$(".img_desc_item").eq(i).attr("data-img"),
                 pddi_index:i,
-                pii_pi_seq:$(this).attr("seq")
+                pddi_pi_seq:$(this).attr("seq")
             }
             arrDescImage.push(img_data);
         }

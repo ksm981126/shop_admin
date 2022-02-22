@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DeliveryController {
-    @Autowired DeliveryMapper mapper;
+    @Autowired
+    DeliveryMapper mapper;
+
     @GetMapping("/manage/delivery")
-    public String getManagerDelivery(@RequestParam@Nullable String keyword, Model model){
+    public String getManagerDelivery(@RequestParam @Nullable String keyword, Model model) {
         model.addAttribute("keyword", keyword);
 
-        if(keyword ==null)keyword ="%%";
+        if(keyword == null) keyword = "%%";
         else keyword = "%"+keyword+"%";
 
         List<DeliveryVO> list = mapper.selectDeliveries(keyword);
@@ -27,7 +29,8 @@ public class DeliveryController {
 
         model.addAttribute("list", list);
         model.addAttribute("cnt", cnt);
-
+        model.addAttribute("menu1", "manage");
+        model.addAttribute("menu2", "delivery");
         return "/manage/delivery";
     }
 }

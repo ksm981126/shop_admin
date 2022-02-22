@@ -11,6 +11,13 @@
         order by pi_seq desc
         limit 10 offset #{offset}
     </select>
+    <select id="selectRecommendProductList" resultType="com.twogenesis.shoppingmall_admin.data.ProductVO">
+        select a.*, b.rp_seq as recommend from product_detail_info a left outer join recommend_prod b
+        on a.pi_seq = b.rp_pi_seq
+        where pi_name like #{keyword}
+        order by pi_seq desc
+        limit 10 offset #{offset}
+    </select>
     <insert id="insertProductInfo" parameterType="com.twogenesis.shoppingmall_admin.data.ProductDataVO">
         <selectKey keyProperty="pi_seq" resultType="int" order="AFTER">
             select pi_seq from product_info 
@@ -50,7 +57,7 @@
     <delete id="deleteProduct">
         delete from product_info where pi_seq = #{seq}
     </delete>
-    <select id="selectProductByseq" resultType="com.twogenesis.shoppingmall_admin.data.ProductVO">
+    <select id="selectProductBySeq" resultType="com.twogenesis.shoppingmall_admin.data.ProductVO">
         select * from product_detail_info where pi_seq =#{seq}
     </select>
     <select id="selectProductDescription" resultType="java.lang.String">
@@ -78,4 +85,10 @@
     <update id="updateProdDetailDesc">
         update prod_detail_desc set pdd_content =#{desc} where pdd_pi_seq = #{seq}
     </update>
+    <insert id="insertProductRecommend">
+        insert into recommend_prod(rp_pi_seq) values(#{seq})
+    </insert>
+    <delete id="deleteProductRecommend">
+        delete from recommend_prod where rp_pi_seq =#{seq}
+    </delete>
 </mapper>

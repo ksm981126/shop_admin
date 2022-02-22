@@ -13,8 +13,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ProductMapper {
     List<ProductVO> selectProductList(String keyword, Integer offset, Integer seller_seq);
+    List<ProductVO> selectRecommendProductList(String keyword, Integer offset);
 
-    ProductVO selectProductByseq(Integer seq);
+    ProductVO selectProductBySeq(Integer seq);
     String selectProductDescription(Integer seq);
 
     Integer selectProductCnt(String keyword, Integer seller_seq);
@@ -34,4 +35,7 @@ public interface ProductMapper {
     void updateProdDetailDesc(String desc, Integer seq);
     void deleteProductImageBySeq(Integer seq);
     void deleteProductDetailImageBySeq(Integer seq);
+
+    void insertProductRecommend(Integer seq);
+    void deleteProductRecommend(Integer seq);
 }

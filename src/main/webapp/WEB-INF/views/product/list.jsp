@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; encoding=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -127,9 +127,9 @@
                                 <td>부제목</td>
                                 <td><input type="text" id="pi_sub_title"></td>
                                 <td>할인율</td>
-                                <td><input type="text" id="pi_discount_rate"></td>
+                                <td><input type="text" id="pi_discount_rate" value="0"></td>
                                 <td>적립율</td>
-                                <td><input type="text" id="pi_point_rate"></td>
+                                <td><input type="text" id="pi_point_rate" value="0"></td>
                             </tr>
                             <tr>
                                 <td>판매자</td>
