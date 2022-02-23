@@ -91,4 +91,12 @@
     <delete id="deleteProductRecommend">
         delete from recommend_prod where rp_pi_seq =#{seq}
     </delete>
+    <select id="selectReviewList" resultType="com.twogenesis.shoppingmall_admin.data.ReviewInfoVO">
+        select ri_seq,ri_content ,ri_score,mi_email as email,ri_reg_dt
+        from review_info left outer join member_info
+	on mi_seq = ri_mi_seq 
+    order by ri_seq desc
+    limit 10 offset #{offset}
+    </select>
+
 </mapper>

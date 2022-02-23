@@ -7,6 +7,7 @@ import com.twogenesis.shoppingmall_admin.data.ProductDescImageVO;
 import com.twogenesis.shoppingmall_admin.data.ProductDescVO;
 import com.twogenesis.shoppingmall_admin.data.ProductImageVO;
 import com.twogenesis.shoppingmall_admin.data.ProductVO;
+import com.twogenesis.shoppingmall_admin.data.ReviewInfoVO;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -38,4 +39,7 @@ public interface ProductMapper {
 
     void insertProductRecommend(Integer seq);
     void deleteProductRecommend(Integer seq);
+
+    List<ReviewInfoVO> selectReviewList(String keyword,Integer offset);
+    Integer getReviewCnt(String keyword);
 }
