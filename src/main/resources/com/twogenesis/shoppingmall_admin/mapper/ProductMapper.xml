@@ -91,12 +91,86 @@
     <delete id="deleteProductRecommend">
         delete from recommend_prod where rp_pi_seq =#{seq}
     </delete>
-    <select id="selectReviewList" resultType="com.twogenesis.shoppingmall_admin.data.ReviewInfoVO">
-        select ri_seq,ri_content ,ri_score,mi_email as email,ri_reg_dt
-        from review_info left outer join member_info
-	on mi_seq = ri_mi_seq 
-    order by ri_seq desc
-    limit 10 offset #{offset}
+
+    <select id="selectProductReview" resultType="com.twogenesis.shoppingmall_admin.data.ReviewVO">
+        select * from
+        (
+            select a.*,b.pi_name,c.mi_name from review_info a
+            inner join product_info b 
+            on a.ri_pi_seq = b.pi_seq 
+            inner join member_info c 
+            on a.ri_mi_seq = c.mi_seq
+            where
+            <if test="review_status == 'blind'">
+                ri_status in (1,2)
+            </if>
+            <if test="review_status == 'not_blind'">
+                ri_status = 0
+            </if>
+            <if test="review_status == 'all'">
+                ri_status in (0,1,2)
+            </if>
+            <if test="si_seq != 0">
+                and pi_seller_seq = #{si_seq}
+            </if>
+        ) a where
+        <if test="search_type == 'all'">
+            pi_name like #{keyword} or ri_content like #{keyword}
+        </if>
+        <if test="search_type == 'prod'">
+            pi_name like #{keyword}
+        </if>
+        <if test="search_type == 'review'">
+            ri_content like #{keyword}
+        </if>
+
+        <if test="align_type == 'default'">
+            order by ri_seq desc
+        </if>
+        <if test="align_type == 'report'">
+            order by ri_report_cnt desc
+        </if>
+        <if test="align_type == 'date'">
+            order by ri_reg_dt desc
+        </if>
+        limit 10 offset #{offset}
     </select>
+    
+    <select id="selectProductReviewCount" resultType="java.lang.Integer">
+        select count(*) from
+        (
+            select a.*,b.pi_name,c.mi_name from review_info a
+            inner join product_info b 
+            on a.ri_pi_seq = b.pi_seq 
+            inner join member_info c 
+            on a.ri_mi_seq = c.mi_seq
+            where
+            <if test="review_status == 'blind'">
+                ri_status in (1,2)
+            </if>
+            <if test="review_status == 'not_blind'">
+                ri_status = 0
+            </if>
+            <if test="review_status == 'all'">
+                ri_status in (0,1,2)
+            </if>
+            <if test="si_seq != 0">
+                and pi_seller_seq = #{si_seq}
+            </if>
+        ) a where
+        <if test="search_type == 'all'">
+            pi_name like #{keyword} or ri_content like #{keyword}
+        </if>
+        <if test="search_type == 'prod'">
+            pi_name like #{keyword}
+        </if>
+        <if test="search_type == 'review'">
+            ri_content like #{keyword}
+        </if>
+    </select>
+    <update id="updateProductReviewStatus">
+        update review_info set ri_status =#{status} where ri_seq =#{seq}
+    </update>
+
 
 </mapper>

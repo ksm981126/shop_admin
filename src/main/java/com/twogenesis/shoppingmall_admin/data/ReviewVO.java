@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class ReviewInfoVO {
+public class ReviewVO {
     private Integer ri_seq;
     private String ri_content;
     private Integer ri_mi_seq;
@@ -14,6 +14,8 @@ public class ReviewInfoVO {
     private Integer ri_oi_seq;
     private Date ri_reg_dt;
     private Date ri_mod_dt;
-    
-    private String email;
+    private Integer ri_status;
+    private Integer ri_report_cnt;
+    private String pi_name;
+    private String mi_name;
 }

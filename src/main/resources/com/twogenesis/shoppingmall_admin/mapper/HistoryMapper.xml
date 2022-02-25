@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twogenesis.shoppingmall_admin.mapper.HistoryMapper">
+    <insert id="insertPageConnectHistory">
+        INSERT INTO page_conn_history(pch_mi_seq, pch_url, pch_interval)
+        VALUES(#{pch_mi_seq}, #{pch_url}, #{pch_interval});
+
+    </insert>
+    <insert id="insertMemberProductHistory">
+        INSERT INTO member_prod_history(mph_mi_seq, mph_pi_seq, mph_interval)
+        VALUES(#{mph_mi_seq}, #{mph_pi_seq}, #{mph_interval});
+
+    </insert>
+</mapper>

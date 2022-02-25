@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.twogenesis.shoppingmall_admin.data.ProductDataVO;
 import com.twogenesis.shoppingmall_admin.data.ProductDescImageVO;
 import com.twogenesis.shoppingmall_admin.data.ProductImageVO;
 import com.twogenesis.shoppingmall_admin.data.ProductRequest;
@@ -134,4 +133,10 @@ public class ProductAPIController {
         mapper.deleteProductRecommend(seq);
         return "추천상품에서 삭제되었습니다.";
     }
+    @PatchMapping("/update/review/status")
+    public String patchReviewStatus(@RequestParam Integer seq, @RequestParam Integer status){
+        mapper.updateProductReviewStatus(seq, status);
+        return "리뷰의 상태가 변경되었습니다.";
+    }
+    
 }

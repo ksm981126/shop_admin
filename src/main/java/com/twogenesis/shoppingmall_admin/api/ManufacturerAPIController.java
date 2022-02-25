@@ -1,7 +1,6 @@
 package com.twogenesis.shoppingmall_admin.api;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.twogenesis.shoppingmall_admin.data.ManufacturerVO;
